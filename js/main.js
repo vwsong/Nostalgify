@@ -74,7 +74,7 @@ function getTracks(spotifyApi, playlist_ids, delay) {
     for (var i = 0; i < playlist_ids.length; i++) {
 
         spotifyApi.getPlaylistTracks(me, playlist_ids[i].id).then(function (tracks) {
-            
+            console.log(playlist_ids[i].name);
             for (var j = 0; j < tracks.items.length; j++) {
                 var track_date = new Date(tracks.items[j].added_at.split("T")[0]);
                 if(track_ids.length < 100){
