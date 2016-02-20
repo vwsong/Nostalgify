@@ -22,7 +22,7 @@ $(document).ready(function () {
         url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
         window.location = url;
 
-    }, false);
+    }, false); 
 })();
 
 $('.datepicker').pickadate({
