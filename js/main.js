@@ -51,7 +51,7 @@ function getUserStuff(delay) {
 function parsePlaylists(spotifyApi, data) {
     var playlist_ids = [];
     data.items.forEach(function (entry) {
-        playlist_ids.push(entry.id);
+        playlist_ids.push(entry);
     });
     
     getTracks(spotifyApi, playlist_ids, 6000);
