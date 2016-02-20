@@ -66,7 +66,7 @@ function getTracks(spotifyApi, playlist_ids, delay)
 				// console.log(tracks.items[j].track);
 
 				// Doesn't work for some reason
-				track_ids.push({id: tracks.items[j].track.id});
+				track_ids.push({id: tracks.items[j].track.uri});
 			}
 
 		});
