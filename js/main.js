@@ -81,6 +81,7 @@ function getTracks(spotifyApi, playlist_ids, delay) {
                     track_ids.push(tracks.items[j].track.uri); //REMOVE
                 }
                 if (Math.abs(input_date - track_date) < 604800000) {
+                    console.log(input_date - track_date);
                 }
             }
         });
