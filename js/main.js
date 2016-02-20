@@ -11,15 +11,18 @@ $(document).ready(function () {
 
     getUserStuff();
 });
-
 (function () {
 
     document.getElementById('login-button').addEventListener('click', function () {
+
         var client_id = '9d8a65e5d4e847478736a41953d7ac1d'; // Your client id
         var redirect_uri = 'https://vwsong.github.io/Nostalgify/'; // Your redirect uri
+        var scopes = 'playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private';
+
         var url = 'https://accounts.spotify.com/authorize';
         url += '?response_type=token';
         url += '&client_id=' + encodeURIComponent(client_id);
+        url += (scopes ? '&scope=' + encodeURIComponent(scopes) : '');
         url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
         window.location = url;
 
@@ -52,6 +55,7 @@ function parsePlaylists(spotifyApi, data) {
     });
 
     getTracks(spotifyApi, playlist_ids, 1000);
+
 }
 
 function getTracks(spotifyApi, playlist_ids, delay) {
@@ -59,7 +63,11 @@ function getTracks(spotifyApi, playlist_ids, delay) {
         me = data.id; //vincentwsong
         console.log(me);
     });
-    setTimeout(function () {}, 2000);
+
+    if (me == "test")
+        return;
+
+    var input_date = new Date($(".datepicker").val());
     var track_ids = [];
 
     for (var i = 0; i < playlist_ids.length; i++) {
@@ -67,30 +75,41 @@ function getTracks(spotifyApi, playlist_ids, delay) {
         spotifyApi.getPlaylistTracks(me, playlist_ids[i]).then(function (tracks) {
 
             for (var j = 0; j < tracks.items.length; j++) {
+                var track_date = new Date(tracks.items[j].added_at.split("T")[0]);
 
-                //FIXME: 
-                //console.log(tracks.items[j].track);
-
-                // Doesn't work for some reason
-                track_ids.push({
-                    id: tracks.items[j] //get date as "2015-08-15”
-                        //Our date: "15 April, 2015”
-                });
+                if (Math.abs(input_date - track_date) < 604800000) {
+                    track_ids.push(tracks.items[j].track.uri);
+                }
             }
-
         });
     }
 
     setTimeout(function () {
-        if (track_ids.length == 0)
+        if (track_ids.length == 0) {
             getTracks(spotifyApi, playlist_ids, delay + 1000);
-        else
+            return;
+        } else
             console.log(track_ids);
+
+        createPlaylist(spotifyApi, track_ids);
+
     }, delay);
+}
 
-    var date = $(".datepicker").val();
+function createPlaylist(spotifyApi, track_ids) {
+    console.log(track_ids);
+    var playlist_id;
 
-    console.log(date);
+    spotifyApi.createPlaylist(me, {
+            name: "A"
+        })
+        .then(function (data) {
+            console.log("data", data);
+            playlist_id = data.id;
+        });
 
-
+    setTimeout(function () {
+        spotifyApi.addTracksToPlaylist(me, playlist_id, track_ids, {});
+        console.log("completed");
+    }, 1000);
 }
