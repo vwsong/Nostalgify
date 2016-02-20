@@ -3,6 +3,7 @@ var accessKey = "NA";
 $(document).ready(function () {
     if(window.location.hash != ""){
         accessKey = window.location.hash.substr(1).split("&")[0].split("=")[1];
+        consoe.log(accessKey);
         $("pickDateDiv").attr("visibility", "visible");
     } 
     $(".parent").hide().fadeIn(500);
@@ -13,9 +14,8 @@ $(document).ready(function () {
 
     document.getElementById('login-button').addEventListener('click', function () {
 
-        var client_id = '721b580742bb441b9af117b1ad7b72d7'; // Your client id
-        var redirect_uri = 'http://vwsong.github.io/Nostalgify/redirect.html'; // Your redirect uri
-
+        var client_id = '9d8a65e5d4e847478736a41953d7ac1d'; // Your client id
+        var redirect_uri = 'https://vwsong.github.io/Nostalgify/'; // Your redirect uri
         var url = 'https://accounts.spotify.com/authorize';
         url += '?response_type=token';
         url += '&client_id=' + encodeURIComponent(client_id);
@@ -29,10 +29,11 @@ $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15 // Creates a dropdown of 15 years to control year
 });
-
 function getUserStuff(delay) {
+    accessKey = window.location.hash.substr(1).split("&")[0].split("=")[1];
     var spotifyApi = new SpotifyWebApi();
-    var accessToken = "BQCuctG-UJ9QcWRgLSBGh0LQAQnYSKOgZXbtr_JRi77X4VTVxabTb1Ve7j0k16Vvd8oHHOazDk3NUU04-oaY6AizT6pYN5rIoJwhgqwbGswVENUauIBA8jruzk_l65KFmjeR0GwJSdOr6XiEKFB5H8kkPjoeE8jg-F2_lQ"
+    var accessToken = window.location.hash.substr(1).split("&")[0].split("=")[1];
+    console.log(accessToken);
     spotifyApi.setAccessToken(accessToken);
     spotifyApi.getUserPlaylists()
         .then(function (data) {
