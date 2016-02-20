@@ -1,0 +1,98 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:900,100,400);
+body {
+    font-family: 'Lato', sans-serif !important;
+    background-color: #616161 !important;
+}
+
+.pickDateDiv{
+    visibility:hidden;
+}
+
+.fa-github{
+    color: #23CF5F;
+}
+
+.fa-github:hover{
+    color:#99ff99;
+}
+
+button {
+    background-color: #677077 !important;
+}
+
+.parent {
+
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.top {
+    text-align: left;
+}
+
+.logo1 {
+    font-weight: 900;
+    font-size: 85px;
+    color: #23CF5F;
+}
+
+.logo2 {
+    font-weight: 100;
+    font-size: 85px;
+    color: #23CF5F;
+}
+
+.descriptionText {
+    color: #23CF5F;
+    font-weight: 100;
+    font-size: 24px;
+    letter-spacing: 0.1em;
+}
+
+.datepicker {
+    color: #23CF5F;
+    font-weight: 100;
+    font-size: 24px;
+}
+
+.button {
+    border-radius: 4px;
+    background-color: #677077 !important;
+    color: #23CF5F;
+    border: none;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    font-weight: 100;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
