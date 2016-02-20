@@ -3,7 +3,7 @@ var accessKey = "NA";
 $(document).ready(function () {
     if(window.location.hash != ""){
         accessKey = window.location.hash.substr(1).split("&")[0].split("=")[1];
-        consoe.log(accessKey);
+        console.log(accessKey);
         $("pickDateDiv").attr("visibility", "visible");
     } 
     $(".parent").hide().fadeIn(500);
