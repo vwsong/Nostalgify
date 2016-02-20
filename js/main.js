@@ -80,8 +80,9 @@ function getTracks(spotifyApi, playlist_ids, delay) {
                 if(track_ids.length < 100){
                 }
                 if (Math.abs(input_date - track_date) < 604800000) {
-                    console.log(input_date - track_date);
-                    track_ids.push(tracks.items[j].track.uri); 
+                    if(track_ids.length < 50){
+                        track_ids.push(tracks.items[j].track.uri); 
+                    }
                 }
             }
         });
