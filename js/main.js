@@ -53,7 +53,7 @@ function parsePlaylists(spotifyApi, data) {
     data.items.forEach(function (entry) {
         playlist_ids.push(entry.id);
     });
-    console.log(playlist_ids);
+    console.log(playlist_ids, "testasdgjaigja");
     getTracks(spotifyApi, playlist_ids, 6000);
 
 }
