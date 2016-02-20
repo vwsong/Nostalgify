@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 function getUserStuff(delay) {
     var spotifyApi = new SpotifyWebApi();
-    var accessToken = "BQA89HXNuJI0QxND22vCR6wbwalAgTiFSEdoWK1nKVcUFSVN-aa6WLvWr_LpB4VLujh7zNyF6EiLeVZLaxYyIQr5pqLOOICdaBX95iJ_ht7AMgk6OvvGjkAUbunnyKk6eKCAQ40vh7OIOUWWK3XjmDXA2RxL6ItfRiK0xg"
+    var accessToken = "BQCC66W_SS1uYkG0WFoEN_ok3Hdlum2dvHbmpuHt49cq4jM1mV6l9K-F9ZU3a7lsdg64aGBAbAzTijH1F3bkLJDg-Sems2jmQ4LPAzTFwrywn06rBahxStiKtg8CEVSqYCrk5kSB5YtURH2XOTzgVEKom-4RsMt0NDJYkQ"
     spotifyApi.setAccessToken(accessToken);
     spotifyApi.getUserPlaylists()
         .then(function (data) {
@@ -60,13 +60,14 @@ function getTracks(spotifyApi, playlist_ids, delay) {
         spotifyApi.getPlaylistTracks(me, playlist_ids[i]).then(function (tracks) {
 
             for (var j = 0; j < tracks.items.length; j++) {
-
+                
                 //FIXME: 
-                // console.log(tracks.items[j].track);
+                //console.log(tracks.items[j].track);
 
                 // Doesn't work for some reason
                 track_ids.push({
-                    id: tracks.items[j].track.uri
+                    id: tracks.items[j] //get date as "2015-08-15”
+                                        //Our date: "15 April, 2015”
                 });
             }
 
@@ -79,8 +80,6 @@ function getTracks(spotifyApi, playlist_ids, delay) {
         else
             console.log(track_ids);
     }, delay);
-
-
 
     var date = $(".datepicker").val();
 
