@@ -32,7 +32,7 @@ $('.datepicker').pickadate({
 function getUserStuff(delay) {
     accessKey = window.location.hash.substr(1).split("&")[0].split("=")[1];
     var spotifyApi = new SpotifyWebApi();
-    var accessToken = window.location.hash.substr(1).split("&")[0].split("=")[1];
+    var accessToken = "BQAPyu3nl8Eb4skxJvqeUQzyrn2Zl2umQnKAu4S7uGiwHKH2-WnURgdPAuu3rOBcvL24SNA8X5aCWf-lbawG_EEm0TzLt37Ul_6JQDYZ0kRunUyOHGZ4-9Hr-jlREeUJHdo5mfuGZ2RhOEXUcg";
     console.log(accessToken);
     spotifyApi.setAccessToken(accessToken);
     spotifyApi.getUserPlaylists()
