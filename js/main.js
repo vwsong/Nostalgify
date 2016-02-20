@@ -1,3 +1,4 @@
+var me = "test";
 (function () {
 
     document.getElementById('login-button').addEventListener('click', function () {
@@ -19,72 +20,71 @@ $('.datepicker').pickadate({
     selectYears: 15 // Creates a dropdown of 15 years to control year
 });
 
-//BQDBlgb2DBBHZk91CGe3bmODWdzVyI2ABOBjcLmK1JAkTI1mzdgIAxiOJWq8sChpGeWje66jyafU3QaPfuMcAD_jr8J2IhSAC1ojF3MdMj16Fp_ERQnXoaVxZfeNwGExoP-zhavv44o45XkWGA
 $(document).ready(function () {
     getUserStuff();
 });
 
-function getUserStuff() {
+function getUserStuff(delay) {
     var spotifyApi = new SpotifyWebApi();
-    var accessToken = "BQBeKT9aDsJW3_ydtqXXDqL2Zor6NRW6ODOW3v-QxMnJLi6gyEts_V2CVsNGYIUTSOy0cHNTq7ndEhJKG-azJ08stG_lVuSYHkq4dRXd_2f0xjVgTY1z5RZdjsdW-iuv6of3H3WNIXHjtQ"
+    var accessToken = "BQA89HXNuJI0QxND22vCR6wbwalAgTiFSEdoWK1nKVcUFSVN-aa6WLvWr_LpB4VLujh7zNyF6EiLeVZLaxYyIQr5pqLOOICdaBX95iJ_ht7AMgk6OvvGjkAUbunnyKk6eKCAQ40vh7OIOUWWK3XjmDXA2RxL6ItfRiK0xg"
     spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getUserPlaylists("allenplay", {
-            limit: 30,
-            offset: 0
-        })
+    spotifyApi.getUserPlaylists()
         .then(function (data) {
+
             parsePlaylists(spotifyApi, data);
         }, function (err) {
             console.error(err);
         });
 }
 
-function parsePlaylists(spotifyApi, data)
-{
-	var playlist_ids = [];
-
-	data.items.forEach(function(entry) {
-		playlist_ids.push(entry.id);
-	});
-
-	getTracks(spotifyApi, playlist_ids, 1000);
+function parsePlaylists(spotifyApi, data) {
+    var playlist_ids = [];
+    data.items.forEach(function (entry) {
+        playlist_ids.push(entry.id);
+    });
+    
+    getTracks(spotifyApi, playlist_ids, 1000);
 }
 
-function getTracks(spotifyApi, playlist_ids, delay)
-{
-	var track_ids = [];
+function getTracks(spotifyApi, playlist_ids, delay) {
+    spotifyApi.getMe().then(function (data) {
+        me = data.id; //vincentwsong
+        console.log(me);
+    });
+    setTimeout(function () {
+    }, 2000);
+    var track_ids = [];
 
-	for (var i = 0; i < playlist_ids.length; i++)
-	{
+    for (var i = 0; i < playlist_ids.length; i++) {
 
-		spotifyApi.getPlaylistTracks("allenplay", playlist_ids[i]).then(function (tracks) {
+        spotifyApi.getPlaylistTracks(me, playlist_ids[i]).then(function (tracks) {
 
-			for (var j = 0; j < tracks.items.length; j++)
-			{
+            for (var j = 0; j < tracks.items.length; j++) {
 
-				//FIXME: 
-				// console.log(tracks.items[j].track);
+                //FIXME: 
+                // console.log(tracks.items[j].track);
 
-				// Doesn't work for some reason
-				track_ids.push({id: tracks.items[j].track.uri});
-			}
+                // Doesn't work for some reason
+                track_ids.push({
+                    id: tracks.items[j].track.uri
+                });
+            }
 
-		});
-	}
+        });
+    }
 
-	setTimeout(function() 
-		{ 
-			if (track_ids.length == 0)
-				getTracks(spotifyApi, playlist_ids, delay + 1000);
-			else
-				console.log(track_ids); 
-		}, delay);
+    setTimeout(function () {
+        if (track_ids.length == 0)
+            getTracks(spotifyApi, playlist_ids, delay + 1000);
+        else
+            console.log(track_ids);
+    }, delay);
 
-	
 
-	var date = $(".datepicker").val();
 
-	console.log(date);
+    var date = $(".datepicker").val();
 
-	
+    console.log(date);
+
+
 }
