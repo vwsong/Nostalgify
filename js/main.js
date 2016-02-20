@@ -7,7 +7,6 @@ $(document).ready(function () {
         accessKey = window.location.hash.substr(1).split("&")[0].split("=")[1];
         console.log("itworks");
         $('.pickDateDiv').css("visibility", "visible");
-        $('#login-button').text("TEST");
     }
 
     getUserStuff();
