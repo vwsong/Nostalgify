@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 function getUserStuff(delay) {
     var spotifyApi = new SpotifyWebApi();
-    var accessToken = "BQCC66W_SS1uYkG0WFoEN_ok3Hdlum2dvHbmpuHt49cq4jM1mV6l9K-F9ZU3a7lsdg64aGBAbAzTijH1F3bkLJDg-Sems2jmQ4LPAzTFwrywn06rBahxStiKtg8CEVSqYCrk5kSB5YtURH2XOTzgVEKom-4RsMt0NDJYkQ"
+    var accessToken = "BQASSNdd6623-AJ04966X8xB96XZ4rvlTLgWRQuXiAM5VKF8GOh3KIM58uniLVqXv2a31uN0WHHN7TUDD8-kYLr77M2rNfbCNN9OT_vOaPWTSzUHOtwj9UFezIpuyMMjrbY4SpnZm3i4Fg"
     spotifyApi.setAccessToken(accessToken);
     spotifyApi.getUserPlaylists()
         .then(function (data) {
@@ -51,26 +51,24 @@ function getTracks(spotifyApi, playlist_ids, delay) {
         me = data.id; //vincentwsong
         console.log(me);
     });
-    setTimeout(function () {
-    }, 2000);
+
+    var input_date = new Date($(".datepicker").val());
+
     var track_ids = [];
 
     for (var i = 0; i < playlist_ids.length; i++) {
 
         spotifyApi.getPlaylistTracks(me, playlist_ids[i]).then(function (tracks) {
 
-            for (var j = 0; j < tracks.items.length; j++) {
-                
-                //FIXME: 
-                //console.log(tracks.items[j].track);
+            for (var j = 0; j < tracks.items.length; j++) 
+            {
+            	 var track_date = new Date(tracks.items[j].added_at.split("T")[0]);
 
-                // Doesn't work for some reason
-                track_ids.push({
-                    id: tracks.items[j] //get date as "2015-08-15”
-                                        //Our date: "15 April, 2015”
-                });
+                if (Math.abs(input_date - track_date) < 604800000)
+                {
+	                track_ids.push( tracks.items[j].track.id );
+	            }
             }
-
         });
     }
 
@@ -81,9 +79,7 @@ function getTracks(spotifyApi, playlist_ids, delay) {
             console.log(track_ids);
     }, delay);
 
-    var date = $(".datepicker").val();
-
-    console.log(date);
+    
 
 
 }
