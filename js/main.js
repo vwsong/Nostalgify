@@ -14,12 +14,24 @@
     }, false);
 })();
 
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+});
+
 //BQDBlgb2DBBHZk91CGe3bmODWdzVyI2ABOBjcLmK1JAkTI1mzdgIAxiOJWq8sChpGeWje66jyafU3QaPfuMcAD_jr8J2IhSAC1ojF3MdMj16Fp_ERQnXoaVxZfeNwGExoP-zhavv44o45XkWGA
+$(document).ready(function () {
+    getUserStuff();
+});
+
 function getUserStuff() {
     var spotifyApi = new SpotifyWebApi();
-    var accessToken = "BQDBlgb2DBBHZk91CGe3bmODWdzVyI2ABOBjcLmK1JAkTI1mzdgIAxiOJWq8sChpGeWje66jyafU3QaPfuMcAD_jr8J2IhSAC1ojF3MdMj16Fp_ERQnXoaVxZfeNwGExoP-zhavv44o45XkWGA" 
+    var accessToken = "BQDBlgb2DBBHZk91CGe3bmODWdzVyI2ABOBjcLmK1JAkTI1mzdgIAxiOJWq8sChpGeWje66jyafU3QaPfuMcAD_jr8J2IhSAC1ojF3MdMj16Fp_ERQnXoaVxZfeNwGExoP-zhavv44o45XkWGA"
     spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getUserPlaylists()
+    spotifyApi.getUserPlaylists("vincentwsong", {
+            limit: 30,
+            offset: 0
+        })
         .then(function (data) {
             console.log('User playlists', data);
         }, function (err) {
