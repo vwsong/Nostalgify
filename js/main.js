@@ -53,12 +53,13 @@ function parsePlaylists(spotifyApi, data) {
     data.items.forEach(function (entry) {
         playlist_ids.push(entry.id);
     });
-    console.log(playlist_ids, "testasdgjaigja");
+    
     getTracks(spotifyApi, playlist_ids, 6000);
 
 }
 
 function getTracks(spotifyApi, playlist_ids, delay) {
+    console.log(playlist_ids);
     spotifyApi.getMe().then(function (data) {
         me = data.id; //vincentwsong
         console.log(me);
@@ -83,7 +84,7 @@ function getTracks(spotifyApi, playlist_ids, delay) {
             }
         });
     }
-
+    
     setTimeout(function () {
         if (track_ids.length == 0) {
             getTracks(spotifyApi, playlist_ids, delay + 1000);
@@ -97,7 +98,6 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 }
 
 function createPlaylist(spotifyApi, track_ids) {
-    console.log(track_ids);
     var playlist_id;
 
     spotifyApi.createPlaylist(me, {
