@@ -40,7 +40,7 @@ function getUserStuff(delay) {
     var accessToken = accessKey;
     console.log(accessToken);
     spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getUserPlaylists("vincentwsong", {limit: 100, offset: 0})
+    spotifyApi.getUserPlaylists({limit: 30, offset: 20})
         .then(function (data) {
             parsePlaylists(spotifyApi, data);
         }, function (err) {
@@ -60,10 +60,10 @@ function parsePlaylists(spotifyApi, data) {
 
 function getTracks(spotifyApi, playlist_ids, delay) {
     console.log(playlist_ids);
-    spotifyApi.getMe().then(function (data) {
-        me = data.id; //vincentwsong
-        console.log(me);
-    });
+        spotifyApi.getMe().then(function (data) {
+            me = data.id; //vincentwsong
+            console.log(me);
+        });
 
     if (me == "test")
         return;
