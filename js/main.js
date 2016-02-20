@@ -71,9 +71,9 @@ function getTracks(spotifyApi, playlist_ids, delay) {
     var input_date = new Date($(".datepicker").val());
     var track_ids = [];
 
-    for (var i = 0; i < playlist_ids.length; i++) {
+    for (var i = 0; i < playlist_ids.id.length; i++) {
 
-        spotifyApi.getPlaylistTracks(me, playlist_ids[i]).then(function (tracks) {
+        spotifyApi.getPlaylistTracks(me, playlist_ids[i].id).then(function (tracks) {
 
             for (var j = 0; j < tracks.items.length; j++) {
                 var track_date = new Date(tracks.items[j].added_at.split("T")[0]);
