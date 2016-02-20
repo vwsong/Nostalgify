@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 function getUserStuff() {
     var spotifyApi = new SpotifyWebApi();
-    var accessToken = "BQBQYUW9lwOBOrnAD4Xgg1OTZ06csNtYZeQqO-e2VCLkekFAtfSkgV4CW5zVxjHzmbPx0JVVNbEyl-kgm0gD6SR4qE_Au_6_F_sdziB9zZY2G1tbegF2f4Fp8cVMRUFQzRCGRcwrrk-JOA"
+    var accessToken = "BQBeKT9aDsJW3_ydtqXXDqL2Zor6NRW6ODOW3v-QxMnJLi6gyEts_V2CVsNGYIUTSOy0cHNTq7ndEhJKG-azJ08stG_lVuSYHkq4dRXd_2f0xjVgTY1z5RZdjsdW-iuv6of3H3WNIXHjtQ"
     spotifyApi.setAccessToken(accessToken);
     spotifyApi.getUserPlaylists("allenplay", {
             limit: 30,
@@ -56,8 +56,9 @@ function getTracks(spotifyApi, playlist_ids)
 
 	for (var i = 0; i < playlist_ids.length; i++)
 	{
-		spotifyApi.getPlaylistTracks("allenplay", playlist_ids[i], {}, function(err, tracks) {
-			
+
+		spotifyApi.getPlaylistTracks("allenplay", playlist_ids[i]).then(function (tracks) {
+
 			for (var j = 0; j < tracks.items.length; j++)
 			{
 
@@ -67,6 +68,8 @@ function getTracks(spotifyApi, playlist_ids)
 				// Doesn't work for some reason
 				track_ids.push({id: tracks.items[j].track.id});
 			}
+
+			console.log(track_ids);
 		});
 	}
 
@@ -74,5 +77,5 @@ function getTracks(spotifyApi, playlist_ids)
 
 	console.log(date);
 
-	console.log(track_ids);
+	
 }
