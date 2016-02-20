@@ -51,7 +51,7 @@ function getUserStuff(delay) {
 function parsePlaylists(spotifyApi, data) {
     var playlist_ids = [];
     data.items.forEach(function (entry) {
-        playlist_ids.push(entry.id);
+        playlist_ids.push(entry);
     });
     
     getTracks(spotifyApi, playlist_ids, 6000);
@@ -73,7 +73,7 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 
     for (var i = 0; i < playlist_ids.length; i++) {
 
-        spotifyApi.getPlaylistTracks(me, playlist_ids[i]).then(function (tracks) {
+        spotifyApi.getPlaylistTracks(me, playlist_ids[i].id).then(function (tracks) {
 
             for (var j = 0; j < tracks.items.length; j++) {
                 var track_date = new Date(tracks.items[j].added_at.split("T")[0]);
