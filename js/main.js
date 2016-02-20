@@ -47,10 +47,10 @@ function parsePlaylists(spotifyApi, data)
 		playlist_ids.push(entry.id);
 	});
 
-	getTracks(spotifyApi, playlist_ids);
+	getTracks(spotifyApi, playlist_ids, 1000);
 }
 
-function getTracks(spotifyApi, playlist_ids)
+function getTracks(spotifyApi, playlist_ids, delay)
 {
 	var track_ids = [];
 
@@ -63,15 +63,24 @@ function getTracks(spotifyApi, playlist_ids)
 			{
 
 				//FIXME: 
-				console.log(tracks.items[j].track.id);
+				// console.log(tracks.items[j].track);
 
 				// Doesn't work for some reason
 				track_ids.push({id: tracks.items[j].track.id});
 			}
 
-			console.log(track_ids);
 		});
 	}
+
+	setTimeout(function() 
+		{ 
+			if (track_ids.length == 0)
+				getTracks(spotifyApi, playlist_ids, delay + 1000);
+			else
+				console.log(track_ids); 
+		}, delay);
+
+	
 
 	var date = $(".datepicker").val();
 
