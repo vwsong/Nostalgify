@@ -53,8 +53,8 @@ function parsePlaylists(spotifyApi, data) {
     data.items.forEach(function (entry) {
         playlist_ids.push(entry.id);
     });
-
-    getTracks(spotifyApi, playlist_ids, 10000);
+    console.log(playlist_ids);
+    getTracks(spotifyApi, playlist_ids, 6000);
 
 }
 
@@ -111,5 +111,5 @@ function createPlaylist(spotifyApi, track_ids) {
     setTimeout(function () {
         spotifyApi.addTracksToPlaylist(me, playlist_id, track_ids, {});
         console.log("completed");
-    }, 10000);
+    }, 3000);
 }
