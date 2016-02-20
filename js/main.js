@@ -77,7 +77,9 @@ function getTracks(spotifyApi, playlist_ids, delay) {
             
             for (var j = 0; j < tracks.items.length; j++) {
                 var track_date = new Date(tracks.items[j].added_at.split("T")[0]);
-                track_ids.push(tracks.items[j].track.uri); //REMOVE
+                if(track_ids.length < 30){
+                    track_ids.push(tracks.items[j].track.uri); //REMOVE
+                }
                 if (Math.abs(input_date - track_date) < 604800000) {
                 }
             }
