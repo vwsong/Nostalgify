@@ -4,25 +4,23 @@ body {
     background-color: #616161 !important;
 }
 
-.pickDateDiv{
-    visibility:hidden;
-}
+.pickDateDiv {
+    visibility: hidden;
+}   
 
-.fa-github{
+.fa-github {
     color: #23CF5F;
 }
 
-.fa-github:hover{
-    color:#99ff99;
+.fa-github:hover {
+    color: #99ff99;
 }
 
 button {
     background-color: #677077 !important;
 }
 
-.parent {
-
-}
+.parent {}
 
 .underline {
     text-decoration: underline;
@@ -65,7 +63,7 @@ button {
     text-align: center;
     font-size: 28px;
     padding: 20px;
-    width: 200px;
+    width: 160px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
