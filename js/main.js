@@ -14,7 +14,7 @@ $(document).ready(function () {
     document.getElementById('login-button').addEventListener('click', function () {
 
         var client_id = '721b580742bb441b9af117b1ad7b72d7'; // Your client id
-        var redirect_uri = 'https://www.google.com'; // Your redirect uri
+        var redirect_uri = 'http://vwsong.github.io/Nostalgify/'; // Your redirect uri
 
         var url = 'https://accounts.spotify.com/authorize';
         url += '?response_type=token';
