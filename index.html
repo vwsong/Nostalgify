@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script>
         function toast(){
-            Materialize.toast('Playlist generated! You may have to wait a few seconds.', 4000);
+            Materialize.toast('Loading...', 4000);
         }
     </script>
 </head>
@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-6">
                 <button id="login-button" class="button"><span>Login</span>
-                    <button id="submit-button" class="button pickDateDiv" onClick="getUserStuff()"><span>Generate</span>
+                    <button id="submit-button" class="button pickDateDiv" onClick="getUserStuff();toast();"><span>Generate</span>
                     </button>
                 </button>
 
