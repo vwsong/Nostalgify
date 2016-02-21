@@ -20,6 +20,9 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script>
+        Materialize.toast('Playlist generated!', 4000)
+    </script>
 </head>
 
 <body>
@@ -45,7 +48,7 @@
             </div>
             <div class="col-md-6">
                 <button id="login-button" class="button"><span>Login</span>
-                    <button id="submit-button" class="button pickDateDiv" onClick="getUserStuff()"><span>Generate</span>
+                    <button id="submit-button" class="button pickDateDiv" onClick="Materialize.toast('Playlist generated!', 4000)" onClick="getUserStuff()"><span>Generate</span>
                     </button>
                 </button>
 
