@@ -89,10 +89,6 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 
     //Math.floor(Math.random()*(max-min+1))+min;
     //Keeps deleting random songs until there are only 40 remaining
-    while (track_ids.length > 40) {
-        var indexDeleted = Math.floor(Math.random() * (track_ids.length + 1));
-        track_ids.splice(indexDeleted, 1);
-    }
 
     setTimeout(function () {
         if (track_ids.length == 0) {
@@ -108,7 +104,10 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 
 function createPlaylist(spotifyApi, track_ids) {
     var playlist_id;
-
+    while (track_ids.length > 40) {
+        var indexDeleted = Math.floor(Math.random() * (track_ids.length + 1));
+        track_ids.splice(indexDeleted, 1);
+    }
     spotifyApi.createPlaylist(me, {
             name: "A"
         })
