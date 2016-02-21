@@ -125,7 +125,7 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 function createPlaylist(spotifyApi, track_ids) {
     var playlist_id;
     spotifyApi.createPlaylist(me, {
-            name: "A"
+            name: "Nostalgified Playlist"
         })
         .then(function (data) {
             console.log("data", data);
