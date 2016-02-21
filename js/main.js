@@ -103,7 +103,7 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 }
 
 function createPlaylist(spotifyApi, track_ids) {
-    var input_date = new Date($(".datepicker").val());
+    var input_date =(".datepicker").val();
     var playlist_id;
     while (track_ids.length > 40) {
         var indexDeleted = Math.floor(Math.random() * (track_ids.length + 1));
