@@ -46,21 +46,18 @@ function getUserStuff(delay) {
         console.log(me);
     });
     setTimeout(function () {
-        spotifyApi.getMe().then(function (data) {
-            me = data.id;
-            console.log(me);
-        });
+        spotifyApi.getUserPlaylists(me, {
+                limit: 30,
+                offset: 0
+            })
+            .then(function (data) {
+                parsePlaylists(spotifyApi, data);
+            }, function (err) {
+                console.error(err);
+            });
     }, 5000);
 
-    spotifyApi.getUserPlaylists(me, {
-            limit: 30,
-            offset: 0
-        })
-        .then(function (data) {
-            parsePlaylists(spotifyApi, data);
-        }, function (err) {
-            console.error(err);
-        });
+
 }
 
 function parsePlaylists(spotifyApi, data) {
