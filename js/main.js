@@ -8,8 +8,6 @@ $(document).ready(function () {
         console.log("itworks");
         $('.pickDateDiv').css("visibility", "visible");
     }
-
-    getUserStuff();
 });
 (function () {
 
