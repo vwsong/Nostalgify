@@ -40,7 +40,7 @@ function getUserStuff(delay) {
     var accessToken = accessKey;
     console.log(accessToken);
     spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getUserPlaylists()
+    spotifyApi.getUserPlaylists({length: 30, offset: 0})
         .then(function (data) {
             parsePlaylists(spotifyApi, data);
         }, function (err) {
@@ -77,8 +77,6 @@ function getTracks(spotifyApi, playlist_ids, delay) {
             
             for (var j = 0; j < tracks.items.length; j++) {
                 var track_date = new Date(tracks.items[j].added_at.split("T")[0]);
-                if(track_ids.length < 100){
-                }
                 if (Math.abs(input_date - track_date) < 604800000) {
                     if(track_ids.length < 50){
                         track_ids.push(tracks.items[j].track.uri); 
