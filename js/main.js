@@ -64,7 +64,7 @@ function parsePlaylists(spotifyApi, data) {
         playlist_ids.push(entry);
     });
 
-    getTracks(spotifyApi, playlist_ids, 6000);
+    getTracks(spotifyApi, playlist_ids, 4000);
 
 }
 
@@ -87,7 +87,7 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 
             for (var j = 0; j < tracks.items.length; j++) {
                 var track_date = new Date(tracks.items[j].added_at.split("T")[0]);
-                if (Math.abs(input_date - track_date) < 604800000) {
+                if (Math.abs(input_date - track_date) < 2419200000) {
                     track_ids.push(tracks.items[j].track.uri);
                 }
             }
@@ -103,7 +103,8 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 
     setTimeout(function () {
         if (track_ids.length == 0) {
-            getTracks(spotifyApi, playlist_ids, delay + 1000);
+            // getTracks(spotifyApi, playlist_ids, delay + 1000);
+            console.log("NO TRACKS AVAILABLE");
             return;
         } else
             console.log(track_ids);
