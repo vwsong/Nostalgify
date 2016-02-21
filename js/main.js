@@ -40,7 +40,7 @@ function getUserStuff(delay) {
     var accessToken = accessKey;
     console.log(accessToken);
     spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getUserPlaylists("vincentwsong", {length: 30, offset: 0})
+    spotifyApi.getUserPlaylists("vincentwsong", {limit: 30, offset: 0})
         .then(function (data) {
             parsePlaylists(spotifyApi, data);
         }, function (err) {
