@@ -94,7 +94,11 @@ function getTracks(spotifyApi, playlist_ids, delay) {
         });
     }
 
-    //Math.floor(Math.random()*(max-min+1))+min;
+    // Delete duplicates of track_ids
+    track_ids = track_ids.filter(function(item, pos) {
+    	return track_ids.indexOf(item) == pos;
+	});
+
     //Keeps deleting random songs until there are only 40 remaining
     while (track_ids.length > 40) {
         var indexDeleted = Math.floor(Math.random() * (track_ids.length + 1));
