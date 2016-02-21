@@ -21,7 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script>
-        function toast(){
+        function toast() {
             Materialize.toast('Loading...', 8000);
         }
     </script>
@@ -50,15 +50,17 @@
             </div>
             <div class="col-md-6">
                 <button id="login-button" class="button"><span>Login</span>
-                    <button id="submit-button" class="button pickDateDiv" onClick="getUserStuff();toast();"><span>Generate</span>
-                    </button>
                 </button>
-
-                <br/>
-                <br/>
                 <p class="descriptionText underline pickDateDiv">Pick a date:
                     <input type="date" class="datepicker">
                 </p>
+                <button id="submit-button" class="button pickDateDiv" onClick="getUserStuff();toast();"><span>Generate</span>
+                </button>
+
+
+                <br/>
+                <br/>
+
 
             </div>
             <div class="col-md-1">
