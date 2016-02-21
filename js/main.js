@@ -109,9 +109,13 @@ function getTracks(spotifyApi, playlist_ids, delay) {
         if (track_ids.length == 0) {
             // getTracks(spotifyApi, playlist_ids, delay + 1000);
             console.log("NO TRACKS AVAILABLE");
+            Materialize.toast('Not enough data available to generate playlist :(', 4000);
             return;
         } else
+        {
+        	Materialize.toast('Playlist generated!', 4000);
             console.log(track_ids);
+        }
 
         createPlaylist(spotifyApi, track_ids);
 
