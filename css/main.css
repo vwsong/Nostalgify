@@ -1,12 +1,57 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:900,100,400);
-body {
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.firstBG {
+        background:
+    /* top, transparent black, faked with gradient */
+    
+    linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    /* bottom, image */
+    
+    url('highres2.jpg');
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     font-family: 'Lato', sans-serif !important;
     background-color: #616161 !important;
+    display: table;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment: fixed;
+}
+
+.grad1 {
+    height: 100%;
+    background: red;
+    /* For browsers that do not support gradients */
+    
+    background: -webkit-linear-gradient(#485563, #29323c);
+    /* For Safari 5.1 to 6.0 */
+    
+    background: -o-linear-gradient(#485563,#29323c);
+    /* For Opera 11.1 to 12.0 */
+    
+    background: -moz-linear-gradient(#485563, #29323c);
+    /* For Firefox 3.6 to 15 */
+    
+    background: linear-gradient(#29323c, #485563);
+    /* Standard syntax (must be last) */
 }
 
 .pickDateDiv {
-    visibility: hidden; 
-}   
+    visibility: hidden;
+}
 
 .fa-github {
     color: #23CF5F;
@@ -31,27 +76,27 @@ button {
 }
 
 .logo1 {
-    font-weight: 900;
+    font-weight: 400;
     font-size: 85px;
     color: #23CF5F;
 }
 
 .logo2 {
-    font-weight: 100;
+    font-weight: 400;
     font-size: 85px;
     color: #23CF5F;
 }
 
 .descriptionText {
     color: #23CF5F;
-    font-weight: 100;
+    font-weight: 400;
     font-size: 24px;
     letter-spacing: 0.1em;
 }
 
 .datepicker {
     color: #23CF5F;
-    font-weight: 100;
+    font-weight: 400;
     font-size: 24px;
 }
 
@@ -67,7 +112,7 @@ button {
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
-    font-weight: 100;
+    font-weight: 400;
 }
 
 .button span {
