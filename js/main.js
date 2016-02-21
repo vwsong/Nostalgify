@@ -1,5 +1,6 @@
 var me = "test";
 var accessKey = "NA";
+
 $(document).ready(function () {
     $(".parent").hide().fadeIn(500);
     $("#fadeTwo").hide().fadeIn(1500);
@@ -33,6 +34,7 @@ $('.datepicker').pickadate({
 });
 
 function getUserStuff(delay) {
+    Materialize.toast('Playlist generated!', 4000)
     accessKey = window.location.hash.substr(1).split("&")[0].split("=")[1];
     var spotifyApi = new SpotifyWebApi();
     var accessToken = accessKey;
@@ -114,7 +116,6 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 
 function createPlaylist(spotifyApi, track_ids) {
     var playlist_id;
-    Materialize.toast('Playlist generated!', 4000)
     spotifyApi.createPlaylist(me, {
             name: "A"
         })
