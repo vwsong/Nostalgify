@@ -40,7 +40,10 @@ function getUserStuff(delay) {
     var accessToken = accessKey;
     console.log(accessToken);
     spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getUserPlaylists("vincentwsong", {limit: 30, offset: 0})
+    spotifyApi.getUserPlaylists("vincentwsong", {
+            limit: 30,
+            offset: 0
+        })
         .then(function (data) {
             parsePlaylists(spotifyApi, data);
         }, function (err) {
@@ -53,17 +56,17 @@ function parsePlaylists(spotifyApi, data) {
     data.items.forEach(function (entry) {
         playlist_ids.push(entry);
     });
-    
+
     getTracks(spotifyApi, playlist_ids, 6000);
 
 }
 
 function getTracks(spotifyApi, playlist_ids, delay) {
     console.log(playlist_ids);
-        spotifyApi.getMe().then(function (data) {
-    me = data.id; //vincentwsong
-    console.log(me);
-});
+    spotifyApi.getMe().then(function (data) {
+        me = data.id; //vincentwsong
+        console.log(me);
+    });
 
     if (me == "test")
         return;
@@ -74,18 +77,23 @@ function getTracks(spotifyApi, playlist_ids, delay) {
     for (var i = 0; i < playlist_ids.length; i++) {
         console.log(playlist_ids[i].name);
         spotifyApi.getPlaylistTracks(me, playlist_ids[i].id).then(function (tracks) {
-            
+
             for (var j = 0; j < tracks.items.length; j++) {
                 var track_date = new Date(tracks.items[j].added_at.split("T")[0]);
                 if (Math.abs(input_date - track_date) < 604800000) {
-                    if(track_ids.length < 100){
-                        track_ids.push(tracks.items[j].track.uri); 
-                    }
+                    track_ids.push(tracks.items[j].track.uri);
                 }
             }
         });
     }
-    
+
+    //Math.floor(Math.random()*(max-min+1))+min;
+    //Keeps deleting random songs until there are only 40 remaining
+    while (track_ids.length > 40) {
+        var indexDeleted = Math.floor(Math.random() * (track_ids.length + 1));
+        track_ids.splice(indexDeleted, 1);
+    }
+
     setTimeout(function () {
         if (track_ids.length == 0) {
             getTracks(spotifyApi, playlist_ids, delay + 1000);
