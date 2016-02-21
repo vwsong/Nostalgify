@@ -34,7 +34,6 @@ $('.datepicker').pickadate({
 });
 
 function getUserStuff(delay) {
-    Materialize.toast('Playlist generated!', 4000)
     accessKey = window.location.hash.substr(1).split("&")[0].split("=")[1];
     var spotifyApi = new SpotifyWebApi();
     var accessToken = accessKey;
