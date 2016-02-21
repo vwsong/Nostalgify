@@ -35,18 +35,12 @@ $('.datepicker').pickadate({
 });
 
 function getUserStuff(delay) {
-    var me = "TEST";
     accessKey = window.location.hash.substr(1).split("&")[0].split("=")[1];
     var spotifyApi = new SpotifyWebApi();
     var accessToken = accessKey;
     console.log(accessToken);
     spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getMe().then(function (data) {
-        me = data.id; //vincentwsong
-        console.log(me);
-    });
-
-    spotifyApi.getUserPlaylists(me, {
+    spotifyApi.getUserPlaylists("vincentwsong", {
             limit: 30,
             offset: 0
         })
@@ -95,6 +89,10 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 
     //Math.floor(Math.random()*(max-min+1))+min;
     //Keeps deleting random songs until there are only 40 remaining
+    while (track_ids.length > 40) {
+        var indexDeleted = Math.floor(Math.random() * (track_ids.length + 1));
+        track_ids.splice(indexDeleted, 1);
+    }
 
     setTimeout(function () {
         if (track_ids.length == 0) {
@@ -110,15 +108,9 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 
 function createPlaylist(spotifyApi, track_ids) {
     var playlist_id;
-    var input_date = (".datepicker").val();
 
-    while (track_ids.length > 40) {
-        var indexDeleted = Math.floor(Math.random() * (track_ids.length + 1));
-        track_ids.splice(indexDeleted, 1);
-    }
     spotifyApi.createPlaylist(me, {
-
-            name: input_date + " Nostalgified";
+            name: "A"
         })
         .then(function (data) {
             console.log("data", data);
