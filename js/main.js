@@ -40,7 +40,11 @@ function getUserStuff(delay) {
     var accessToken = accessKey;
     console.log(accessToken);
     spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getUserPlaylists("vincentwsong", {
+    spotifyApi.getMe().then(function (data) {
+        me = data.id; 
+        console.log(me);
+    });
+    spotifyApi.getUserPlaylists(me, {
             limit: 30,
             offset: 0
         })
