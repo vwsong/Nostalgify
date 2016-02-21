@@ -40,10 +40,15 @@ function getUserStuff(delay) {
     var accessToken = accessKey;
     console.log(accessToken);
     spotifyApi.setAccessToken(accessToken);
+    
     spotifyApi.getMe().then(function (data) {
-        me = data.id; 
+        me = data.id;
         console.log(me);
     });
+    setTimeout(function () {
+        console.log("waiting 5s");
+    }, 5000);
+
     spotifyApi.getUserPlaylists(me, {
             limit: 30,
             offset: 0
