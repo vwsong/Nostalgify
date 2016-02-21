@@ -54,8 +54,7 @@ function getUserStuff(delay) {
                 console.error(err);
             });
     }, 5000);
-
-
+    
 }
 
 function parsePlaylists(spotifyApi, data) {
@@ -115,7 +114,7 @@ function getTracks(spotifyApi, playlist_ids, delay) {
 
 function createPlaylist(spotifyApi, track_ids) {
     var playlist_id;
-
+    Materialize.toast('Playlist generated!', 4000)
     spotifyApi.createPlaylist(me, {
             name: "A"
         })
