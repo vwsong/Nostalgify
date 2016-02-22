@@ -56,7 +56,7 @@ function getUserStuff(delay) {
                 console.error(err);
             });
     }, 5000);
-    
+
 }
 
 function parsePlaylists(spotifyApi, data) {
@@ -96,9 +96,9 @@ function getTracks(spotifyApi, playlist_ids, delay) {
     }
 
     // Delete duplicates of track_ids
-    track_ids = track_ids.filter(function(item, pos) {
-    	return track_ids.indexOf(item) == pos;
-	});
+    track_ids = track_ids.filter(function (item, pos) {
+        return track_ids.indexOf(item) == pos;
+    });
 
     //Keeps deleting random songs until there are only 40 remaining
     while (track_ids.length > 40) {
@@ -112,13 +112,13 @@ function getTracks(spotifyApi, playlist_ids, delay) {
             console.log("NO TRACKS AVAILABLE");
             Materialize.toast('Not enough data available to generate playlist :(', 4000);
             return;
-        } else
-        {
-        	Materialize.toast('Playlist generated!', 4000);
+        } else {
+            createPlaylist(spotifyApi, track_ids);
+            //Materialize.toast('Playlist generated!', 4000);
             console.log(track_ids);
         }
 
-        createPlaylist(spotifyApi, track_ids);
+        //createPlaylist(spotifyApi, track_ids);
 
     }, delay);
 }
@@ -130,6 +130,7 @@ function createPlaylist(spotifyApi, track_ids) {
         })
         .then(function (data) {
             console.log("data", data);
+            Materialize.toast('Playlist generated!', 4000);
             playlist_id = data.id;
         });
 
